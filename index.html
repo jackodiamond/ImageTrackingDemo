@@ -8,15 +8,12 @@
     
   </head>
   <body>
-    <style>
-      .mobile-container {
-  max-width: 480px;
-  margin: auto;
-  background-color: #555;
-  height: 500px;
-  color: white;
-  border-radius: 10px;
+   <style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+
 
 .topnav {
   overflow: hidden;
@@ -48,10 +45,21 @@
   background-color: #ddd;
   color: black;
 }
-    </style>
-    <div class="topnav">
+
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<!-- Simulate a smartphone / tablet -->
+<div class="mobile-container">
+
+<!-- Top Navigation Menu -->
+<div class="topnav">
   <a href="#home" class="active">Logo</a>
-  <div class="mobile-container">
   <div id="myLinks">
     <a href="#news">News</a>
     <a href="#contact">Contact</a>
@@ -60,6 +68,10 @@
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
+</div>
+
+
+<!-- End smartphone / tablet look -->
 </div>
     <a-scene mindar-image="imageTargetSrc: targets1.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
