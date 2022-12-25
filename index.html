@@ -1,24 +1,38 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+  <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-  </head>
-  <body>
    <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-
+   
+  .mobile-container{
+      z-index:100;
+  }
+  
+  #aframeCanvas{
+      z-index:1;
+  }
+  
+  .mindar-ui-overlay #mindar-ui-scanning{
+      z-index:-100;
+  }
+  
+  .imageLink{
+      background-color: #000660;
+      display:inline;
+  }
+  
 .topnav {
   overflow: hidden;
   background-color: #333;
   position: relative;
+  z-index:10;
 }
 
 .topnav #myLinks {
@@ -37,7 +51,7 @@ body {
   background: black;
   display: block;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
 }
 
@@ -47,33 +61,56 @@ body {
 }
 
 .active {
-  background-color: #04AA6D;
+  background-color: #000080;
   color: white;
 }
+
+.topInfo {
+    padding: 14px 16px;
+    height: 30px;
+  background-color: #000660;
+  color: white;
+}
+
 </style>
+
+
 </head>
+    
+    
+    
+    
 <body>
 
-<!-- Simulate a smartphone / tablet -->
-<div class="mobile-container">
 
 <!-- Top Navigation Menu -->
 <div class="topnav">
-  <a href="#home" class="active">Logo</a>
-  <div id="myLinks">
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
-  </div>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
+  <a href="#home" class="active">1111 Image Tracking</a>
+  <div class="topInfo"> <a class= "imageLink" href = "https://www.tutorialspoint.com" target = "_self">Point the Camera at the image. you can find the images here</a>
+  </div>
+  <div id="myLinks">
+    <a href="https://instancy.streamlit.app/">Home</a>
+    <a href="#https://instancy.streamlit.app/Image_tracking">Image Tracking</a>
+    <a href="https://instancy.streamlit.app/ground_tracking">Ground Tracking</a>
+    <a href="https://instancy.streamlit.app/OCR_Text">Optical Character Recognition</a>
+    <a href="https://instancy.streamlit.app/Face_Recognition">Face Recognition</a>
+    <a href="https://instancy.streamlit.app/Face_Emotion_Recognition">Face Emotion Detection</a>
+    <a href="https://instancy.streamlit.app/Pharmaceutical_Drug_info">Pharmaceutical Drug Info</a>
+    <a href="https://instancy.streamlit.app/Find_It_On_The_Map">Find it on the Map</a>
+    <a href="https://instancy.streamlit.app/location_based_content">Location Based Content</a>
+    <a href="https://instancy.streamlit.app/Language_Translation">Language Translation</a>
+    <a href="https://instancy.streamlit.app/Try_Body_Poses">Try Body Poses</a>
+  </div>
+  
 </div>
 
-
-<!-- End smartphone / tablet look -->
-</div>
-    <a-scene mindar-image="imageTargetSrc: targets1.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <a-scene mindar-image="imageTargetSrc: targets1.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: true" device-orientation-permission-ui="enabled: true";
+      uiError:no; uiLoading:no; uiScanning:no">
+    
+    
       <a-assets>
         <a-asset-item id="robot" src="models/robot.glb"></a-asset-item>
         <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
@@ -104,14 +141,33 @@ body {
       <a-entity mindar-image-target="targetIndex: 0">
         <a-gltf-model rotation="0 90 0 " position="0 0 0" scale="0.5 0.5 0.5" src="#robot" animation-mixer>
       </a-entity>
+      
+     
     </a-scene>
-    <script>
     
-      var vimeoPlayer = document.querySelector('#video');
-      var i=0;
-      /*
-      window.addEventListener('click', function () { 
-        
+    
+    
+    <script>
+  var i=0;
+      function myFunction() {
+      i=200;
+          console.log("clicked");
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+    
+    var vimeoPlayer = document.querySelector('#video');
+
+     window.addEventListener('click', function () { 
+        if(i==200)
+        {
+        i=0;
+        return;
+        }
           if(i%2==0)
           {
               vimeoPlayer.play();
@@ -121,16 +177,17 @@ body {
           }
           i++
       });
-      */
-      function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
+
 
     </script>
+    
+    <div id = "aframeCanvas">
+    
+
+
+    </div>
+    
+    
+    
   </body>
 </html>
