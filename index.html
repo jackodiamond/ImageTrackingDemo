@@ -143,15 +143,7 @@
         <a-gltf-model rotation="0 90 0 " position="0 0 0" scale="0.5 0.5 0.5" src="#robot" animation-mixer>
       </a-entity>
       
-     const vid = document.querySelector('#vid');                                                                                    
-     vid.addEventListener("targetFound", event => {
-  console.log("target found");
-});
-
-// detect target lost
-vid.addEventListener("targetLost", event => {
-  console.log("target lost");
-});
+ 
                                                                                           
                                                                                           
     </a-scene>
@@ -188,7 +180,16 @@ vid.addEventListener("targetLost", event => {
           }
           i++
       });
+                             
+        const vid = document.querySelector('#vid');                                                                                    
+         vid.addEventListener("targetFound", event => {
+      console.log("target found");
+      });
 
+      // detect target lost
+      vid.addEventListener("targetLost", event => {
+        console.log("target lost");
+      });
 
     </script>
     
