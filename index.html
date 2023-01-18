@@ -129,6 +129,7 @@
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <a-entity
+        id="vid"                                                      
         mindar-image-target="targetIndex: 1"
         material="shader: flat; src: #video"
         geometry="primitive: plane; width: 1; height: 0.7"
@@ -142,7 +143,17 @@
         <a-gltf-model rotation="0 90 0 " position="0 0 0" scale="0.5 0.5 0.5" src="#robot" animation-mixer>
       </a-entity>
       
-     
+                                                                                          
+     vid.addEventListener("targetFound", event => {
+  console.log("target found");
+});
+
+// detect target lost
+vid.addEventListener("targetLost", event => {
+  console.log("target lost");
+});
+                                                                                          
+                                                                                          
     </a-scene>
     
     
