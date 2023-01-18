@@ -152,6 +152,7 @@
     
     <script>
   var i=0;
+     var j=0;                                                                                     
       function myFunction() {
       i=200;
           console.log("clicked");
@@ -171,8 +172,12 @@
         i=0;
         return;
         }
+        if(j=0)
+         {
+         return;
+         }
           if(i%2==0)
-          {
+          {            
               vimeoPlayer.play();
           }else
           {
@@ -183,12 +188,13 @@
                              
         const vid = document.querySelector('#vid');                                                                                    
          vid.addEventListener("targetFound", event => {
-      console.log("target found");
+        j=1;
       });
 
       // detect target lost
       vid.addEventListener("targetLost", event => {
-        console.log("target lost");
+         vimeoPlayer.pause();
+         j=0;                              
       });
 
     </script>
